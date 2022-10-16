@@ -28,13 +28,13 @@ function  pintarStatus(json_maquinas){
 
 function traerReportesFechas(){
 
-    var fechaInicio = document.getElementById("RstarDate").value;
-    var fechaCierre = document.getElementById("RdevolutionDate").value;
-    console.log(fechaInicio);
-    console.log(fechaCierre);
+    let startDate = $("#startDate").val();
+    let endDate = $("#endDate").val();
+
+    console.log(startDate, endDate)
     
         $.ajax({
-            url:"http://155.248.201.73:80/api/Reservation/report-dates/"+fechaInicio+"/"+fechaCierre,
+            url:"http://155.248.201.73:80/api/Reservation/report-dates/"+startDate+"/"+endDate,
             type:"GET",
             datatype:"JSON",
             success:function(respuesta){
@@ -43,39 +43,38 @@ function traerReportesFechas(){
             }
         });
     
-    $.ajax({
-        url:"http://155.248.201.73/api/Reservation/report-dates/"+dato1+"/"+dato2,
-        type:"GET",
-        datatype:"JSON",
-        success:function(respuesta){
-            pintarFechas(respuesta);
-            console.log(respuesta);
-        }
-    });
-
 }
 
 function pintarRespuestaDate(){
 
-    let myTable ="<table>";
-   
+    let completadas = 0;
+    let canceladas = 0;
 
     for(i=0;i<respuesta.length;i++){
     
-        myTable+="<tr>";
-        myTable+="<td>"+respuesta[i].startDate+"</td>";
-        myTable+="<td>"+respuesta[i].devolutionDate+"</td>";
-        myTable+="<td>"+respuesta[i].status+"</td>";
-        myTable+="<td>"+respuesta[i].client.name+"</td>";
-        myTable+="</tr>";   
+        if(respuesta[i].status == "cancelled"){
+            canceladas++;
+            console.log(`Reservas canceladas: ${canceladas}`)
+        }else if(respuesta[i].status == "completed"){
+            completadas++;
+            console.log(`Reservas completas: ${completadas}`)
+        }
     }
-   
+
+    let myTable = "<table>";
+
+    myTable += "<tr>";
+    myTable += "<td>" + "Reservas completadas: " + completadas + "</td>";
+    myTable += "</tr>";
+    myTable += "<tr>";
+    myTable += "<td>" + "Reservas canceladas: " + canceladas + "</td>";
+    myTable += "</tr>";
+
+
     myTable+="</table>";
     $("#resultadoDate").html(myTable);
    
 }
-
-
 
 
 function traerReportesClientes(){
@@ -91,6 +90,19 @@ function traerReportesClientes(){
     });
 }
 
-function pintarCliente(){
+function pintarCliente(respuesta){
 
+    let myTable = '<table class="table-auto w-full text-left whitespace-no-wrap">';
+    for(let i = 0; i < respuesta.length; i++){
+        myTable += "<tr>";
+        myTable += `<td>ID: ${respuesta[i].client.idClient}, </td>`;
+        myTable += `<td>${respuesta[i].client.name}, </td>`;
+        myTable += `<td>${respuesta[i].client.email}, </td>`;
+        myTable += `<td>Contraseña: ${respuesta[i].client.password}, </td>`;
+        myTable += `<td>Edad: ${respuesta[i].client.age}, </td>`;
+        myTable += `<td>Reservas totales: ${respuesta[i].total} </td>`;
+        myTable += "</tr>";
+    } 
+    myTable += "</table>";
+    $("#resultado3").html(myTable);
 }

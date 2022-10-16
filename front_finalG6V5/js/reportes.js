@@ -28,21 +28,21 @@ function  pintarStatus(json_maquinas){
 
 function traerReportesFechas(){
 
-    var fechaInicio = document.getElementById("RstarDate").value;
-    var fechaCierre = document.getElementById("RdevolutionDate").value;
-    console.log(fechaInicio);
-    console.log(fechaCierre);
-    
-        $.ajax({
-            url:"http://155.248.201.73:80/api/Reservation/report-dates/"+fechaInicio+"/"+fechaCierre,
-            type:"GET",
-            datatype:"JSON",
-            success:function(respuesta){
-                console.log(respuesta);
-                pintarRespuestaDate(respuesta);
-            }
-        });
-    
+    let startDate = $("#startDate").val();
+    let endDate = $("#endDate").val();
+
+    console.log(startDate, endDate)
+
+    $.ajax({
+        url:`http://155.248.201.73:8080/api/Reservation/report-dates/${startDate}/${endDate}`,
+        type: "GET",
+        datatype: "JSON",
+        success:function(respuesta){
+            console.log(respuesta);
+            pintarRespuestaDate(respuesta);
+        }
+    });
+        
 }
 
 function pintarRespuestaDate(){
@@ -70,7 +70,7 @@ function pintarRespuestaDate(){
     myTable += "<td>" + "Reservas canceladas: " + canceladas + "</td>";
     myTable += "</tr>";
 
-
+    
     myTable+="</table>";
     $("#resultadoDate").html(myTable);
    
@@ -98,8 +98,8 @@ function pintarCliente(respuesta){
         myTable += `<td>ID: ${respuesta[i].client.idClient}, </td>`;
         myTable += `<td>${respuesta[i].client.name}, </td>`;
         myTable += `<td>${respuesta[i].client.email}, </td>`;
-        myTable += `<td>Contraseña: ${respuesta[i].client.password}, </td>`;
-        myTable += `<td>Edad: ${respuesta[i].client.age}, </td>`;
+       // myTable += `<td>Contraseña: ${respuesta[i].client.password}, </td>`;
+       // myTable += `<td>Edad: ${respuesta[i].client.age}, </td>`;
         myTable += `<td>Reservas totales: ${respuesta[i].total} </td>`;
         myTable += "</tr>";
     } 

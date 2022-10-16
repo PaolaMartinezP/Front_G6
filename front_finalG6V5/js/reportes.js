@@ -28,13 +28,13 @@ function  pintarStatus(json_maquinas){
 
 function traerReportesFechas(){
 
-    let startDate = $("#startDate").val();
-    let endDate = $("#endDate").val();
-
-    console.log(startDate, endDate)
+    var fechaInicio = document.getElementById("RstarDate").value;
+    var fechaCierre = document.getElementById("RdevolutionDate").value;
+    console.log(fechaInicio);
+    console.log(fechaCierre);
     
         $.ajax({
-            url:"http://155.248.201.73:80/api/Reservation/report-dates/"+startDate+"/"+endDate,
+            url:"http://155.248.201.73:80/api/Reservation/report-dates/"+fechaInicio+"/"+fechaCierre,
             type:"GET",
             datatype:"JSON",
             success:function(respuesta){

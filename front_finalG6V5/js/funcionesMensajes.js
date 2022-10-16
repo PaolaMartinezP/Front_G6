@@ -28,7 +28,7 @@ function postMensajes(){
         data: JSON.stringify(cajas),
         success:function(respuesta){
             alert("se creo correctamente el mensaje");
-            //window.location.reload();
+            window.location.reload();
     
         }
     });

@@ -34,7 +34,7 @@ function traerReportesFechas(){
     console.log(startDate, endDate)
 
     $.ajax({
-        url:`http://155.248.201.73:8080/api/Reservation/report-dates/${startDate}/${endDate}`,
+        url:`http://155.248.201.73:8080/api/Reservation/report-dates/`+startDate+"/"+endDate,
         type: "GET",
         datatype: "JSON",
         success:function(respuesta){
@@ -61,7 +61,7 @@ function pintarRespuestaDate(){
         }
     }
 
-    let myTable = "<table>";
+    let myTable ='<table class="table-auto w-full text-left whitespace-no-wrap">';
 
     myTable += "<tr>";
     myTable += "<td>" + "Reservas completadas: " + completadas + "</td>";
@@ -70,7 +70,7 @@ function pintarRespuestaDate(){
     myTable += "<td>" + "Reservas canceladas: " + canceladas + "</td>";
     myTable += "</tr>";
 
-    
+
     myTable+="</table>";
     $("#resultadoDate").html(myTable);
    
@@ -93,6 +93,16 @@ function traerReportesClientes(){
 function pintarCliente(respuesta){
 
     let myTable = '<table class="table-auto w-full text-left whitespace-no-wrap">';
+
+    let ID = "ID";
+    let NAME = "NOMBRE";
+    let EMAIL = "CORREO";
+
+    myTable+="<th>"+ID+"</th>";
+    myTable+="<th>"+NAME+"</th>";
+    myTable+="<th>"+EMAIL+"</th>";
+
+
     for(let i = 0; i < respuesta.length; i++){
         myTable += "<tr>";
         myTable += `<td>ID: ${respuesta[i].client.idClient}, </td>`;

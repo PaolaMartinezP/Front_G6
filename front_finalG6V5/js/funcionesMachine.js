@@ -2,7 +2,7 @@
 
 function getMachine (){
     $.ajax({
-        url:"http://localhost:8080/api/Machine/all",
+        url:"http://155.248.201.73:8080/api/Machine/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -23,7 +23,7 @@ function postMachine(){
     };
     console.log(cajas);
     $.ajax({
-        url:"http://localhost:8080/api/Machine/save",
+        url:"http://155.248.201.73:8080/api/Machine/save",
         type:"POST",
         datatype:"JSON",
         contentType:"application/json; charset=utf-8",
@@ -53,7 +53,7 @@ function putMachine(idDesdeBoton){
         category:{id: +$("#select-categoria").val()}
     };
     $.ajax({
-        url:"http://localhost:8080/api/Machine/update",
+        url:"http://155.248.201.73:8080/api/Machine/update",
         type:"PUT",
         datatype:"JSON",
         contentType:"application/json",
@@ -73,7 +73,7 @@ function deleteMachine(idDesdeBoton){
         id:idDesdeBoton
     };
     $.ajax({
-        url:"http://localhost:8080/api/Machine/"+idDesdeBoton,
+        url:"http://155.248.201.73:8080/api/Machine/"+idDesdeBoton,
         type:"DELETE",
         datatype:"JSON",
         data: JSON.stringify(myData),
@@ -119,7 +119,7 @@ function pintarMachine(json_maquinas){
 
 function getCategoria_Machine(){
     $.ajax({
-        url:"http://localhost:8080/api/Category/all",
+        url:"http://155.248.201.73:8080/api/Category/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){

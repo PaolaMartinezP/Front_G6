@@ -1,6 +1,6 @@
 function traerReporteStatus(){
     $.ajax({
-        url:"http://localhost:8080/api/Reservation/report-status",
+        url:"http://155.248.201.73:8080/api/Reservation/report-status",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -34,7 +34,7 @@ function traerReportesFechas(){
     console.log(fechaCierre);
     
         $.ajax({
-            url:"http://localhost:80/api/Reservation/report-dates/"+fechaInicio+"/"+fechaCierre,
+            url:"http://155.248.201.73:80/api/Reservation/report-dates/"+fechaInicio+"/"+fechaCierre,
             type:"GET",
             datatype:"JSON",
             success:function(respuesta){
@@ -44,7 +44,7 @@ function traerReportesFechas(){
         });
     
     $.ajax({
-        url:"http://localhost:8080/api/Reservation/report-dates/"+dato1+"/"+dato2,
+        url:"http://155.248.201.73/api/Reservation/report-dates/"+dato1+"/"+dato2,
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -81,7 +81,7 @@ function pintarRespuestaDate(){
 function traerReportesClientes(){
     
     $.ajax({
-        url:"http://localhost:8080/api/Reservation/report-clients",
+        url:"http://155.248.201.73:8080/api/Reservation/report-clients",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){

@@ -2,7 +2,7 @@
 
 function getReservaciones (){
     $.ajax({
-        url:"http://localhost:8080/api/Reservation/all",
+        url:"http://155.248.201.73:8080/api/Reservation/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -26,7 +26,7 @@ function postReservaciones(){
         machine:{id: +$("#select-machine").val()}
     };
     $.ajax({
-        url:"http://localhost:8080/api/Reservation/save",
+        url:"http://155.248.201.73:8080/api/Reservation/save",
         type:"POST",
         datatype:"JSON",
         contentType:"application/json; charset=utf-8",
@@ -56,7 +56,7 @@ function putReservaciones(idDesdeBoton){
         machine:{id: +$("#select-machine").val()}
     };
     $.ajax({
-        url:"http://localhost:8080/api/Reservation/update",
+        url:"http://155.248.201.73:8080/api/Reservation/update",
         type:"PUT",
         datatype:"JSON",
         contentType:"application/json",
@@ -76,7 +76,7 @@ function deleteReservaciones(data){
         id:data
     };
     $.ajax({
-        url:"http://localhost:8080/api/Reservation/"+data,
+        url:"http://155.248.201.73:8080/api/Reservation/"+data,
         type:"DELETE",
         datatype:"JSON",
         data: JSON.stringify(myData),
@@ -123,7 +123,7 @@ function  pintarReservaciones(json_maquinas){
 
 function getClient_Reservation(){
     $.ajax({
-        url:"http://localhost:8080/api/Client/all",
+        url:"http://155.248.201.73:8080/api/Client/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -138,7 +138,7 @@ function getClient_Reservation(){
 
 function getMachine_Reservation(){
     $.ajax({
-        url:"http://localhost:8080/api/Machine/all",
+        url:"http://155.248.201.73:8080/api/Machine/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
